@@ -1,0 +1,20 @@
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+
+  &--offset {
+    gap: var(--columns-gap, 16px);
+  }
+
+  &--offset-s {
+    gap: var(--columns-gap, 8px);
+  }
+
+  &__column {
+    @for $i from 2 through 12 {
+      &--x#{$i} {
+        grid-column: span #{$i};
+      }
+    }
+  }
+}
