@@ -9,6 +9,7 @@ import { ResultsComponent } from './results.component';
 import { UsersComponent } from './users.component';
 import { ItemsComponent } from './items.component';
 import { ConfirmDirective } from './confirm.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ConfirmDirective } from './confirm.directive';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [
     {provide: DEFAULT_CURRENCY_CODE, useValue: ''},
