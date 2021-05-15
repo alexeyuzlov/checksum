@@ -1,77 +1,13 @@
 <h1>It works</h1>
+<button type="button" (click)="reset()">Reset</button>
 
 <form [formGroup]="form">
-  <div class="columns">
-    <div class="columns__column">
-      <h2>Люди</h2>
-      <ng-container formArrayName="users">
-        <div *ngFor="let _ of users.controls; index as i">
-          #{{_.value.id}}.
-          <ng-container [formGroupName]="i">
-            <input formControlName="name"/>
-            <div>
-              заплатил
-              <input type="number" min="0" max="100000" formControlName="bankSum"/>
-            </div>
+  <div class="columns columns--offset">
+    <app-users class="columns__column" [users]="users" [items]="items"></app-users>
 
-          </ng-container>
-          <button type="button" (click)="deleteUser(i)">[X]</button>
-          <hr>
-        </div>
-      </ng-container>
-      <button type="button" (click)="addUser({name: 'Иван', bankSum: 0})">Add user</button>
-    </div>
+    <app-items class="columns__column" [users]="users" [items]="items"></app-items>
 
-    <div class="columns__column  columns__column--x2">
-      <h2>Заказы</h2>
-      <ng-container formArrayName="items">
-        <div *ngFor="let _ of items.controls; index as i">
-          <ng-container [formGroupName]="i">
-            #{{_.value.id}}.
-
-            <input formControlName="name"/>
-            <input type="number" min="0" max="100000" formControlName="sum"/>
-            <button type="button" (click)="deleteItem(i)">[X]</button>
-
-            <div>
-              <app-select-user
-                [control]="_.get('userIds')"
-                [users]="users.value"
-              ></app-select-user>
-            </div>
-
-          </ng-container>
-          <hr>
-        </div>
-      </ng-container>
-
-      <button type="button" (click)="addItem({name: 'Еда', sum: 0, userIds: []})">Add item</button>
-    </div>
-
-    <div class="columns__column">
-      <h2>Итого</h2>
-
-      <div>Общая сумма: {{sum | currency}}</div>
-
-      <h3>По людям</h3>
-      <div *ngFor="let _ of users.controls">
-        #{{_.value.id}}. {{_.value.name}} поел на {{hashSum[_.value.id] | currency}}
-      </div>
-
-      <h3>Перечисления</h3>
-      <div *ngFor="let _ of users.controls">
-        #{{_.value.id}}. {{_.value.name}}
-        <ng-container *ngIf="hashExchange[_.value.id] > 0; else nothing">
-          платит {{hashExchange[_.value.id] | currency}}
-
-          <pre>
-            {{hashUsers[_.value.id] | json}}
-          </pre>
-        </ng-container>
-
-        <ng-template #nothing>ничего не платит</ng-template>
-      </div>
-    </div>
+    <app-results class="columns__column" [value]="form.value"></app-results>
   </div>
 </form>
 

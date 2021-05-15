@@ -1,0 +1,32 @@
+<h2>Итого</h2>
+
+<div>Общая сумма: {{sum | currency}}</div>
+<div [class.error]="totalPayment < sum">Всего заплатили: {{totalPayment | currency}}</div>
+
+<h2>Расчёты</h2>
+
+<div *ngFor="let user of value.users">
+  #{{user.id}}. {{user.name}}
+  поел на {{hashSum[user.id] | currency}}
+
+  <ng-container *ngIf="user.bankSum > 0; else noPayment">
+    заплатил {{user.bankSum | currency}} и
+  </ng-container>
+
+  <ng-template #noPayment>
+    ничего не платил и
+  </ng-template>
+
+  <ng-container *ngIf="hashExchange[user.id] > 0; else nothing">
+    переводит {{hashExchange[user.id] | currency}}
+  </ng-container>
+
+  <ul>
+    <ng-container *ngFor="let _ of hashUsers[user.id] | keyvalue">
+      <li *ngIf="_.key == user.id && _.value > 0">Заведению: {{+_.value | currency}}</li>
+      <li *ngIf="_.key != user.id && _.value > 0">{{getUser(+_.key).name}}: {{+_.value | currency}}</li>
+    </ng-container>
+  </ul>
+
+  <ng-template #nothing>ничего не переводит</ng-template>
+</div>

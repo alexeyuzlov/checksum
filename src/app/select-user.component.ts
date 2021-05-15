@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { IUser } from './entities';
 
+// todo should be implemented via checkbox-group
 @Component({
   selector: 'app-select-user',
   templateUrl: './select-user.component.html',

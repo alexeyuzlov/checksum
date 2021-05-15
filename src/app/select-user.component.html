@@ -1,3 +1,6 @@
-<label *ngFor="let user of users; index as i">
-  <input type="checkbox" [formControl]="items.at(i)" (ngModelChange)="change($event)"/>#{{user.id}}.  {{user.name}}
-</label>
+<div *ngFor="let user of users; index as i">
+  <label>
+    <input type="checkbox" [formControl]="items.at(i)" (ngModelChange)="change($event)"/>#{{user.id}}.  {{user.name}}
+  </label>
+</div>
+

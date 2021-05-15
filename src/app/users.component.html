@@ -1,0 +1,27 @@
+<h2>Люди</h2>
+<ng-container [formGroup]="users">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Заплатил</th>
+      <th>Удалить</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let _ of users.controls; index as i">
+      <ng-container [formGroupName]="i">
+        <td>#{{_.value.id}}.</td>
+        <td><input class="input" formControlName="name"/></td>
+        <td><input class="input" type="number" min="0" max="100000" formControlName="bankSum"/></td>
+        <td>
+          <button type="button" (confirm)="delete(i)">[X]</button>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<button type="button" (click)="add({name: 'Иван', bankSum: 0})">Add user</button>
