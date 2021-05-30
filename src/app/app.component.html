@@ -1,17 +1,29 @@
-<h1>It works</h1>
-<button type="button" (click)="reset()">Reset</button>
+<mat-toolbar color="primary">
+  <span>It works</span>
+  <span class="spacer"></span>
+  <button type="button" mat-raised-button (click)="reset()">Reset</button>
+</mat-toolbar>
 
-<form [formGroup]="form">
-  <div class="columns columns--offset">
-    <app-users class="columns__column" [users]="users" [items]="items"></app-users>
-
-    <app-items class="columns__column" [users]="users" [items]="items"></app-items>
-
-    <app-results class="columns__column" [value]="form.value"></app-results>
-  </div>
+<form [formGroup]="form" class="content container">
+  <mat-tab-group mat-stretch-tabs>
+    <mat-tab label="Люди">
+      <app-users class="tab-content" [users]="users" [items]="items"></app-users>
+    </mat-tab>
+    <mat-tab label="Заказы">
+      <app-items class="tab-content" [users]="users" [items]="items"></app-items>
+    </mat-tab>
+    <mat-tab label="Итого">
+      <app-results class="tab-content" [value]="form.value"></app-results>
+    </mat-tab>
+  </mat-tab-group>
 </form>
 
-<h2>Debug</h2>
-<pre>
-  {{form.value | json}}
-</pre>
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Debug</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <pre>{{form.value | json}}</pre>
+  </mat-expansion-panel>
+</mat-accordion>

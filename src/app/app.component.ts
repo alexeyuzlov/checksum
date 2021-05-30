@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { CounterService } from './counter.service';
 import { PaymentService } from './payment.service';
@@ -8,7 +8,11 @@ import { ItemsComponent } from './items.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'root'
+  }
 })
 export class AppComponent implements OnInit {
   @ViewChild(UsersComponent, {static: true}) public usersComp: UsersComponent;

@@ -1,11 +1,45 @@
 @import "~normalize.css";
 
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.rows {
+  display: grid;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tab-content {
+  display: block;
+  padding-top: 16px;
+}
+
 .error {
   color: red;
 }
 
+.content {
+  display: block;
+  padding: 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
 .table {
-  width: 100%;
+  width: calc(100% - 2px);
   border-collapse: collapse;
   border: 0;
 
@@ -14,7 +48,20 @@
   }
 }
 
+.table-column-small {
+  width: 40px;
+}
+
+.table-column-price {
+  width: 80px;
+}
+
 .input {
   width: 100%;
   box-sizing: border-box;
+}
+
+// TODO
+.mat-form-field-infix {
+  width: auto !important;
 }

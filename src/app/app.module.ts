@@ -10,6 +10,26 @@ import { UsersComponent } from './users.component';
 import { ItemsComponent } from './items.component';
 import { ConfirmDirective } from './confirm.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+const material = [
+  MatButtonModule,
+  MatIconModule,
+  MatTabsModule,
+  MatExpansionModule,
+  MatToolbarModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatInputModule,
+];
 
 @NgModule({
   declarations: [
@@ -25,6 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    ...material,
   ],
   providers: [
     {provide: DEFAULT_CURRENCY_CODE, useValue: ''},
